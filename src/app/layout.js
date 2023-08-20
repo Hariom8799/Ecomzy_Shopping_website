@@ -1,5 +1,10 @@
+'use client';
+import { Provider } from 'react-redux'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { BrowserRouter } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import Store from './redux/Store'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +16,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <BrowserRouter>
+        <Provider store={Store}>
+        {children}
+        <Toaster/>
+        </Provider>
+        </BrowserRouter>
+        </body>
     </html>
   )
 }
